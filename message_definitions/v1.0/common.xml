@@ -6778,5 +6778,22 @@
       <field type="uint8_t" name="msg_pack_size">Number of encoded messages in the pack (not the number of bytes). Allowed range is 1 - 10.</field>
       <field type="uint8_t[250]" name="messages">Concatenation of encoded OpenDroneID messages. Shall be filled with nulls in the unused portion of the field.</field>
     </message>
+    <message id="43000" name="DETECTED_OBJECT_INFORMATION">
+      <wip/>
+      <!-- This message is still under active development and testing. -->
+      <description>This message is sent to GCS by onboard computer and reports the details of detected objects in a video frame. 
+      If a video frame contains multiple detected object then this message is transmitted per object.
+      </description>
+      <field type="uint64_t" name="time_usec" units="us">Timestamp (UNIX Epoch time or time since system boot). The receiving end can infer timestamp format (since 1.1.1970 or since system boot) by checking for the magnitude of the number.</field>
+      <field type="uint8_t"  name="detected_obj_type" enum="DETECTED_OBJECT_TYPE">Bitmap of detected object type.</field>
+      <field type="uint32_t" name="bbx_top_x">Top X pixel position of the detected object's bounding box within the video frame.</field>
+      <field type="uint32_t" name="bbx_top_y">Top Y pixel position of the detected object's bounding box within the video frame.</field>
+      <field type="uint32_t" name="bbx_width">Width of the detected object's bounding box.</field> 
+      <field type="uint32_t" name="bbx_height">Height of the detected object's bounding box.</field> 
+      <field type="float" name="lat" units="deg">Estimated latitude of bounding box center.</field>
+      <field type="float" name="lon" units="deg">Estimated longitude of bounding box center.</field>
+      <field type="float" name="alt" units="m">Estimated altitude of bounding box center.</field>
+    </message>
+
   </messages>
 </mavlink>
